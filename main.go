@@ -1,17 +1,11 @@
 package main
 
-import(
-	"fmt"
-)
-
 func main() {
-	cards := []string{"Ace of Spades", newCard()}
-	fmt.Println(cards)
-	// iterate over the slice, and print
-	for _, card := range cards {
-		fmt.Println(card)
-	}
+	cards := deck{"Ace of Spades", newCard()}
+	cards = append(cards, "Ace of Hearts")
+
+	cards.print()
 }
 func newCard() string {
-	return "Five of Diamonds"
+	return "Ace of Diamonds"
 }
