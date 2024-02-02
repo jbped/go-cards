@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
-	// "os"
 )
 
 type deck []string
@@ -61,10 +61,6 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
-// func toByte(s string) []byte {
-// 	return []byte(s)
-// }
-
-func (d deck) saveDeck() {
-	// err := os.WriteFile()
+func (d deck) saveDeck(deckName string) error {
+	return os.WriteFile(deckName + ".txt", []byte(d.toString()), 0666)
 }
