@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -43,11 +44,11 @@ func buildDeck() deck {
 	return cardDeck
 }
 
-func (d deck) print() {
-	for _, card := range d {
-		fmt.Println(card)
+func (d deck) shuffle() {
+	for i := range d {
+		randomIndex := rand.Intn(len(d) - 1)
+		d[i], d[randomIndex] = d[randomIndex], d[i]
 	}
-	fmt.Println("---------------")
 }
 
 func drawCards(d deck, amt int) (deck, deck) {
@@ -55,6 +56,13 @@ func drawCards(d deck, amt int) (deck, deck) {
 	deckRemaining := d[amt:]
 
 	return cardsDrawn, deckRemaining
+}
+
+func (d deck) print() {
+	for _, card := range d {
+		fmt.Println(card)
+	}
+	fmt.Println("---------------")
 }
 
 func (d deck) toString() string {
