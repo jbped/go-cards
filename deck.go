@@ -62,5 +62,20 @@ func (d deck) toString() string {
 }
 
 func (d deck) saveDeck(deckName string) error {
-	return os.WriteFile(deckName + ".txt", []byte(d.toString()), 0666)
+	return os.WriteFile("decks/" + deckName + ".txt", []byte(d.toString()), 0666)
+}
+
+func loadDeck(deckName string) deck {
+	if deckName == "" {
+		fmt.Println("Error: Missing deckName")
+		os.Exit(1)
+	}
+	byteDeck, err := os.ReadFile("decks/" + deckName + ".txt")
+	if err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+
+	loadedDeck := strings.Split(string(byteDeck), ",")
+	return deck(loadedDeck)
 }
