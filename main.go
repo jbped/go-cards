@@ -5,10 +5,12 @@ import(
 )
 
 func main() {
-	// var card string = "Ace of Spades"
-	// card := "Ace of Spades" // Preferred way to declare a variable
-	card := newCard()
-	fmt.Println(card)
+	cards := []string{"Ace of Spades", newCard()}
+	fmt.Println(cards)
+	// iterate over the slice, and print
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
 }
 func newCard() string {
 	return "Five of Diamonds"
