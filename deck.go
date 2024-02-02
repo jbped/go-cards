@@ -43,4 +43,12 @@ func (d deck) print() {
 	for _, card := range d {
 		fmt.Println(card)
 	}
+	fmt.Println("---------------")
+}
+
+func drawCards(d deck, amt int) (deck, deck) {
+	cardsDrawn := d[:amt]
+	deckRemaining := d[amt:]
+
+	return cardsDrawn, deckRemaining
 }
